@@ -9,10 +9,10 @@ export default class UserHelper {
   }
 
   static async logIn(email) {
-    const text = 'SELECT id, password, role FROM users WHERE email = $1';
-    const values = [email];
-    const { rows } = await db.query(text, values);
-    return rows[0];
+    const findUser = await User.findOne({
+      where: { email },
+    });
+    return findUser;
   }
 
   static async getAllUsers() {

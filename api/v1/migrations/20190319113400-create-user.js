@@ -6,11 +6,11 @@ export default {
       allowNull: false,
       defaultValue: Sequelize.UUIDV4,
     },
-    first_name: {
+    firstName: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    last_name: {
+    lastName: {
       type: Sequelize.STRING,
       allowNull: false,
     },

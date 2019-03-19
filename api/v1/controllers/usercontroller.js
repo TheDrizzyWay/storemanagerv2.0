@@ -7,7 +7,7 @@ export default {
     user.password = hashes.hashPassword(user.password);
 
     try {
-      const newUser = await user.signUp(user);
+      const newUser = await UserHelper.signUp(user);
       return res.status(201).send({
         success: true,
         message: 'User account created successfully',
@@ -22,7 +22,7 @@ export default {
     const { email, password } = req.body;
 
     try {
-      const result = await User.logIn(email);
+      const result = await UserHelper.logIn(email);
       if (!result) {
         return res.status(401).send({ success: false, message: 'User account not found.' });
       }

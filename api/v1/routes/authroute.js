@@ -8,7 +8,7 @@ const { logInValid, signUpValid } = authValidation;
 
 const authRouter = express.Router();
 
-// authRouter.post('/login', logInValid, logIn);
 authRouter.post('/signup', requireAuth, adminAuth, signUpValid, signUp);
+authRouter.post('/login', logInValid, logIn);
 
 export default authRouter;

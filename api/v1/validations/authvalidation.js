@@ -1,5 +1,5 @@
 import validator from 'validator';
-import User from '../models/Users';
+import UserHelper from '../helpers/usershelper';
 
 const convertText = a => (a.charAt(0).toUpperCase() + a.slice(1)).trim();
 
@@ -83,7 +83,7 @@ export default {
     req.body.role = newRole;
 
     try {
-      const result = await User.logIn(newEmail);
+      const result = await UserHelper.logIn(newEmail);
       if (result) {
         return res.status(400).send({ success: false, message: 'This email address is already taken.' });
       }

@@ -6,11 +6,11 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: DataTypes.UUIDV4,
     },
-    first_name: {
+    firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    last_name: {
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
