@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  "config": path.resolve('./api/v1/database/', 'config.json'),
+  'config': path.resolve('./api/v1/database/babelHook.js'),
   "models-path": path.resolve('./api/v1/models'),
   "seeders-path": path.resolve('./api/v1/seeders'),
   "migrations-path": path.resolve('./api/v1/migrations')
