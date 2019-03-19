@@ -1,13 +1,13 @@
 import hashes from '../middleware/hashes';
-import User from '../models/Users';
+import UserHelper from '../helpers/usershelper';
 
 export default {
   signUp: async (req, res) => {
-    const user = new User(req.body);
+    const user = req.body;
     user.password = hashes.hashPassword(user.password);
 
     try {
-      const newUser = await user.signUp();
+      const newUser = await user.signUp(user);
       return res.status(201).send({
         success: true,
         message: 'User account created successfully',

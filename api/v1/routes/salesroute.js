@@ -1,4 +1,4 @@
-import express from 'express';
+/* import express from 'express';
 import salesController from '../controllers/salescontroller';
 import verifyProducts from '../middleware/verifyproducts';
 import { requireAuth, adminAuth, attendantAuth } from '../middleware/authmiddleware';
@@ -16,4 +16,4 @@ router.post('/', requireAuth, attendantAuth, createSaleValid, checkRepeat, verif
 router.get('/', requireAuth, getAllSales);
 router.get('/:id', requireAuth, adminAuth, idValid, getSaleById);
 
-export default router;
+export default router; */

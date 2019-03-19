@@ -1,4 +1,4 @@
-import express from 'express';
+/* import express from 'express';
 import CategoryController from '../controllers/categorycontroller';
 import { requireAuth, adminAuth } from '../middleware/authmiddleware';
 import idValidation from '../validations/idvalidation';
@@ -17,4 +17,4 @@ router.get('/:id', requireAuth, idValid, getCategoryById);
 router.put('/:id', requireAuth, adminAuth, idValid, createCategoryValid, updateCategory);
 router.delete('/:id', requireAuth, adminAuth, idValid, deleteCategory);
 
-export default router;
+export default router; */

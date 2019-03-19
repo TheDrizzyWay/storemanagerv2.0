@@ -6,9 +6,9 @@ import authValidation from '../validations/authvalidation';
 const { logIn, signUp } = userController;
 const { logInValid, signUpValid } = authValidation;
 
-const router = express.Router();
+const authRouter = express.Router();
 
-router.post('/login', logInValid, logIn);
-router.post('/signup', requireAuth, adminAuth, signUpValid, signUp);
+// authRouter.post('/login', logInValid, logIn);
+authRouter.post('/signup', requireAuth, adminAuth, signUpValid, signUp);
 
-export default router;
+export default authRouter;
