@@ -14,6 +14,8 @@
     "sequelize": "node_modules/.bin/sequelize init",
     "migrations": "node_modules/.bin/sequelize db:migrate",
     "seed": "node_modules/.bin/sequelize db:seed:all",
+    "undo-migrations": "node_modules/.bin/sequelize db:migrate:undo:all",
+    "pretest": "npm run undo-migrations && npm run migrations && npm run seed",
     "test": "nyc --reporter=text mocha -c ./test/**/*.js --exit --require babel-core/register",
     "devstart": "node_modules/.bin/nodemon api/app.js --exec babel-node --",
     "heroku-postbuild": "npm run pretest"

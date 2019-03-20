@@ -16,22 +16,28 @@ export default class UserHelper {
   }
 
   static async getAllUsers() {
-    const text = 'SELECT * FROM users';
-    const { rows } = await db.query(text);
-    return rows;
+    const users = await User.findAll({
+      attributes: {
+        exclude: ['password'],
+      },
+    });
+    return users;
   }
 
   static async getUserById(id) {
-    const text = 'SELECT * FROM users WHERE id = $1';
-    const values = [id];
-    const { rows } = await db.query(text, values);
-    return rows[0];
+    const user = await User.findOne({
+      where: { id },
+      attributes: {
+        exclude: ['password'],
+      },
+    });
+    return user;
   }
 
   static async deleteUser(id) {
-    const text = 'DELETE FROM users WHERE id = $1';
-    const values = [id];
-    const result = await db.query(text, values);
+    const result = await User.destroy({
+      where: { id },
+    });
     return result;
   }
 }
