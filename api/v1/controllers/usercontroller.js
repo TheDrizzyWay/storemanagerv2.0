@@ -43,7 +43,7 @@ export default {
 
   getAllUsers: async (req, res) => {
     try {
-      const result = await User.getAllUsers();
+      const result = await UserHelper.getAllUsers();
       return res.status(200).send({ success: true, data: result });
     } catch (error) {
       return res.status(500).send({ success: false, message: error.message });
@@ -53,7 +53,7 @@ export default {
   getUserById: async (req, res) => {
     try {
       const { id } = req.params;
-      const result = await User.getUserById(id);
+      const result = await UserHelper.getUserById(id);
       if (!result) {
         return res.status(400).send({ success: false, message: 'User not found' });
       }
@@ -67,7 +67,6 @@ export default {
     try {
       const { id } = req.user;
       const result = await User.getUserById(id);
-      // find user first
       return res.status(200).send({ success: true, data: result });
     } catch (error) {
       return res.status(500).send({ success: false, message: error.message });

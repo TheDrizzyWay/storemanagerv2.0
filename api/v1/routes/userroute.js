@@ -1,4 +1,4 @@
-/* import express from 'express';
+import express from 'express';
 import userController from '../controllers/usercontroller';
 import { requireAuth, adminAuth } from '../middleware/authmiddleware';
 import idValidation from '../validations/idvalidation';
@@ -11,8 +11,8 @@ const { idValid } = idValidation;
 const router = express.Router();
 
 router.get('/', requireAuth, adminAuth, getAllUsers);
-router.get('/profile', requireAuth, getCurrentUser);
+// router.get('/profile', requireAuth, getCurrentUser);
 router.get('/:id', requireAuth, adminAuth, idValid, getUserById);
-router.delete('/:id', requireAuth, adminAuth, idValid, deleteUser);
+// router.delete('/:id', requireAuth, adminAuth, idValid, deleteUser);
 
-export default router; */
+export default router;
