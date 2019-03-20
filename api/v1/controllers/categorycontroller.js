@@ -1,10 +1,10 @@
-import Category from '../models/Categories';
+import CategoryHelper from '../helpers/categorieshelper';
 
 export default class CategoryController {
   static async createCategory(req, res) {
-    const category = new Category(req.body);
+    const category = req.body;
     try {
-      const result = await category.createCategory();
+      const result = await CategoryHelper.createCategory(category);
       return res.status(201).send({
         success: true,
         message: 'Category created successfully.',

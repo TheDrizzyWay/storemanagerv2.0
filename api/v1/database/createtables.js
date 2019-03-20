@@ -1,5 +1,3 @@
-import pool from './dbconfig';
-
 console.log('Creating tables...');
 
 (async () => {

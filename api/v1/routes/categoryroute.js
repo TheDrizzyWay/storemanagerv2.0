@@ -1,4 +1,4 @@
-/* import express from 'express';
+import express from 'express';
 import CategoryController from '../controllers/categorycontroller';
 import { requireAuth, adminAuth } from '../middleware/authmiddleware';
 import idValidation from '../validations/idvalidation';
@@ -12,9 +12,9 @@ const { createCategoryValid } = categoryValidation;
 const router = express.Router();
 
 router.post('/', requireAuth, adminAuth, createCategoryValid, createCategory);
-router.get('/', requireAuth, getAllCategories);
+/* router.get('/', requireAuth, getAllCategories);
 router.get('/:id', requireAuth, idValid, getCategoryById);
 router.put('/:id', requireAuth, adminAuth, idValid, createCategoryValid, updateCategory);
-router.delete('/:id', requireAuth, adminAuth, idValid, deleteCategory);
+router.delete('/:id', requireAuth, adminAuth, idValid, deleteCategory); */
 
-export default router; */
+export default router;

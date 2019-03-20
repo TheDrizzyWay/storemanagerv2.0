@@ -1,5 +1,5 @@
 import validator from 'validator';
-import Category from '../models/Categories';
+import CategoryHelper from '../helpers/categorieshelper';
 
 const convertText = a => (a.charAt(0).toUpperCase() + a.slice(1)).trim();
 
@@ -28,7 +28,7 @@ export default {
     req.body.name = newName;
 
     try {
-      const result = await Category.getCategoryByName(newName);
+      const result = await CategoryHelper.getCategoryByName(newName);
       if (result) {
         return res.status(400).send({ success: false, message: 'This category already exists.' });
       }
