@@ -11,8 +11,8 @@ const { idValid } = idValidation;
 const router = express.Router();
 
 router.get('/', requireAuth, adminAuth, getAllUsers);
-// router.get('/profile', requireAuth, getCurrentUser);
+router.get('/profile', requireAuth, getCurrentUser);
 router.get('/:id', requireAuth, adminAuth, idValid, getUserById);
-// router.delete('/:id', requireAuth, adminAuth, idValid, deleteUser);
+router.delete('/:id', requireAuth, adminAuth, idValid, deleteUser);
 
 export default router;

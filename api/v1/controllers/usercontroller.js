@@ -66,7 +66,7 @@ export default {
   getCurrentUser: async (req, res) => {
     try {
       const { id } = req.user;
-      const result = await User.getUserById(id);
+      const result = await UserHelper.getUserById(id);
       return res.status(200).send({ success: true, data: result });
     } catch (error) {
       return res.status(500).send({ success: false, message: error.message });
@@ -76,11 +76,11 @@ export default {
   deleteUser: async (req, res) => {
     try {
       const { id } = req.params;
-      const findUser = await User.getUserById(id);
+      const findUser = await UserHelper.getUserById(id);
       if (!findUser) {
         return res.status(400).send({ success: false, message: 'User not found.' });
       }
-      await User.deleteUser(id);
+      await UserHelper.deleteUser(id);
       return res.status(200).send({ success: true, message: 'User deleted successfully.' });
     } catch (error) {
       return res.status(500).send({ success: false, message: error.message });

@@ -35,9 +35,9 @@ export default class UserHelper {
   }
 
   static async deleteUser(id) {
-    const text = 'DELETE FROM users WHERE id = $1';
-    const values = [id];
-    const result = await db.query(text, values);
+    const result = await User.destroy({
+      where: { id },
+    });
     return result;
   }
 }
