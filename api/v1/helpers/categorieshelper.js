@@ -1,46 +1,45 @@
 import db from '../models';
 
-const { Categories } = db;
+const { Category } = db;
 
 export default class CategoryHelper {
   static async createCategory(category) {
-    const newCategory = await Categories.create(category);
+    const newCategory = await Category.create(category);
     return newCategory;
   }
 
   static async getCategoryByName(name) {
-    const category = await Categories.findOne({
+    const category = await Category.findOne({
       where: { name },
     });
     return category;
   }
 
   static async getAllCategories() {
-    const text = 'SELECT * FROM categories';
-    const { rows } = await pool.query(text);
-    return rows;
+    const category = await Category.findAll();
+    return category;
   }
 
   static async getCategoryById(id) {
-    const text = 'SELECT * FROM categories WHERE id = $1';
-    const values = [id];
-    const { rows } = await pool.query(text, values);
-    return rows[0];
+    const category = await Category.findOne({
+      where: { id },
+    });
+    return category;
   }
 
   static async updateCategory(id, category) {
     const { name } = category;
-    const text = `UPDATE categories SET name = $1, updated_at = NOW()
-    WHERE id = $2 RETURNING *`;
-    const values = [name, id];
-    const { rows } = await pool.query(text, values);
-    return rows[0];
+    const updatedCategory = await Category.update({ name }, {
+      returning: true,
+      where: { id },
+    });
+    return updatedCategory[1];
   }
 
   static async deleteCategory(id) {
-    const text = 'DELETE FROM categories WHERE id = $1';
-    const values = [id];
-    const result = await pool.query(text, values);
-    return result;
+    const deletedUser = await Category.destroy({
+      where: { id },
+    });
+    return deletedUser;
   }
 }

@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Categories = sequelize.define('Categories', {
+  const Category = sequelize.define('Category', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -12,5 +12,5 @@ export default (sequelize, DataTypes) => {
     },
   });
 
-  return Categories;
+  return Category;
 };
