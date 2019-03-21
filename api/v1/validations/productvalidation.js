@@ -1,5 +1,5 @@
 import validator from 'validator';
-import Product from '../models/Products';
+import ProductHelper from '../helpers/productshelper';
 
 const convertText = a => (a.charAt(0).toUpperCase() + a.slice(1)).trim();
 
@@ -69,7 +69,7 @@ export default {
     req.body.imgUrl = newImgUrl;
 
     try {
-      const result = await Product.getProductByName(newName);
+      const result = await ProductHelper.getProductByName(newName);
       if (result) {
         return res.status(400).send({ success: false, message: 'This product already exists.' });
       }
@@ -149,7 +149,7 @@ export default {
 
     try {
       if (req.body.name) {
-        const result = await Product.getProductByName(req.body.name);
+        const result = await ProductHelper.getProductByName(req.body.name);
         if (result) {
           return res.status(400).send({ success: false, message: 'This product already exists.' });
         }

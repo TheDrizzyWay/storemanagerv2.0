@@ -9,7 +9,7 @@ const router = new Router();
 
 router.use('/auth', authRouter);
 router.use('/users', userRoute);
-// router.use('/products', productRoute);
+router.use('/products', productRoute);
 router.use('/categories', categoryRoute);
 // router.use('/sales', salesRoute);
 
