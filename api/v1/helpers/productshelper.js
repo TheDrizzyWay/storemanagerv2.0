@@ -14,9 +14,7 @@ export default class ProductHelper {
   }
 
   static async getProductById(id) {
-    const product = await Product.findOne({
-      where: { id },
-    });
+    const product = await Product.findByPk(id);
     return product;
   }
 
@@ -41,25 +39,26 @@ export default class ProductHelper {
   }
 
   static async deleteProduct(id) {
-    const text = 'DELETE FROM products WHERE id = $1';
-    const values = [id];
-    const result = await pool.query(text, values);
-    return result;
+    const deletedProduct = await Product.destroy({
+      where: { id },
+    });
+    return deletedProduct;
   }
 
-  static async updateProductQuantity(id, data) {
-    const text = 'UPDATE products SET quantity = $1 WHERE id = $2';
-    const values = [data, id];
-    const result = await pool.query(text, values);
-    return result;
+  static async updateProductQuantity(id, newQuantity) {
+    const updatedQuantity = await Product.update({
+      quantity: newQuantity,
+    }, {
+      where: { id },
+    });
+    return updatedQuantity;
   }
 
   static async getProductSales(id) {
     const text = `SELECT p.id, p.name, p.price, s.quantity_sold, s.total,
-    s.sold_at FROM products p INNER JOIN sales s ON p.id = s.product_id
-    WHERE p.id = $1`;
-    const values = [id];
-    const { rows } = await pool.query(text, values);
-    return rows;
+    s.sold_at FROM Products p INNER JOIN Sales s ON p.id = s.product_id
+    WHERE p.id = ?`;
+    const prodSales = await db.query(text, { replacements: [id] });
+    return prodSales;
   }
 }

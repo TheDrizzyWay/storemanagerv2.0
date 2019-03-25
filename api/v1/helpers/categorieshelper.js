@@ -21,9 +21,7 @@ export default class CategoryHelper {
   }
 
   static async getCategoryById(id) {
-    const category = await Category.findOne({
-      where: { id },
-    });
+    const category = await Category.findByPk(id);
     return category;
   }
 
@@ -37,9 +35,9 @@ export default class CategoryHelper {
   }
 
   static async deleteCategory(id) {
-    const deletedUser = await Category.destroy({
+    const deletedCategory = await Category.destroy({
       where: { id },
     });
-    return deletedUser;
+    return deletedCategory;
   }
 }
