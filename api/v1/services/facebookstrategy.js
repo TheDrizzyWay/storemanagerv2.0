@@ -10,17 +10,17 @@ const { FACEBOOK_APP_ID, FACEBOOK_APP_SECRET } = process.env;
 const facebookSetup = {
   clientID: FACEBOOK_APP_ID,
   clientSecret: FACEBOOK_APP_SECRET,
-  callbackURL: 'http://localhost:3000/auth/facebook/callback',
-  profileFields: ['id', 'emails', 'displayName', 'picture.type(large)'],
+  callbackURL: 'http://localhost:3000/api/v1/auth/facebook/callback',
+  profileFields: ['id', 'emails', 'name', 'picture.type(large)'],
 };
 
 const facebookCallback = async (accessToken, refreshToken, profile, cb) => {
   const email = profile.emails[0].value;
   const { familyName, givenName } = profile.name;
-  const imageUrl = profile.photos[0].value;
+  // const imageUrl = profile.photos[0].value;
+  // get provider from profile
 
   console.log(profile);
-  console.log(imageUrl);
 
   const user = await User.findOrCreate({
     where: { email },
@@ -28,6 +28,7 @@ const facebookCallback = async (accessToken, refreshToken, profile, cb) => {
       firstName: givenName,
       lastName: familyName,
       email,
+      password: profile.id,
       role: 'attendant',
     },
   });

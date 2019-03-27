@@ -12,8 +12,9 @@ const authRouter = express.Router();
 authRouter.post('/signup', requireAuth, adminAuth, signUpValid, signUp);
 authRouter.post('/login', logInValid, logIn);
 authRouter.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-authRouter.get('/facebook/callback', passport.authenticate('facebook', {
-  failureRedirect: '/auth/login',
-}), () => console.log('working!!!'));
+authRouter.get('/facebook/callback', passport.authenticate('facebook', { session: false }), (req, res) => {
+  console.log(req.user);
+  res.status(200).send('working');
+});
 
 export default authRouter;
