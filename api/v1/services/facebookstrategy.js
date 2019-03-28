@@ -5,12 +5,12 @@ import db from '../models';
 const { User } = db;
 dotenv.config();
 
-const { FACEBOOK_APP_ID, FACEBOOK_APP_SECRET } = process.env;
+const { FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, BACKEND_URL } = process.env;
 
 const facebookSetup = {
   clientID: FACEBOOK_APP_ID,
   clientSecret: FACEBOOK_APP_SECRET,
-  callbackURL: 'http://localhost:3000/api/v1/auth/facebook/callback',
+  callbackURL: `${BACKEND_URL}/api/v1/auth/facebook/callback`,
   profileFields: ['id', 'emails', 'name', 'picture.type(large)'],
 };
 
