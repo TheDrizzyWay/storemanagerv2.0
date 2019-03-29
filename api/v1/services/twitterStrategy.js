@@ -8,7 +8,7 @@ dotenv.config();
 const twitterSetup = {
   consumerKey: process.env.TWITTER_APP_ID,
   consumerSecret: process.env.TWITTER_APP_SECRET,
-  callbackURL: `${process.env.BACKEND_URL}api/v1/auth/twitter/callback`,
+  callbackURL: '/api/v1/auth/twitter/redirect',
   includeEmail: true,
 };
 

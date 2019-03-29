@@ -5,6 +5,7 @@ const socialCallback = async (accessToken, refreshToken, profile, done) => {
   const email = profile.emails[0].value;
   const givenName = profile.displayName;
   const familyName = profile.displayName;
+  console.log(email);
   // const { familyName, givenName } = profile.name;
   // const imageUrl = profile.photos[0].value;
   // get provider from profile
@@ -19,7 +20,8 @@ const socialCallback = async (accessToken, refreshToken, profile, done) => {
       role: 'attendant',
     },
   });
-  return done(null, user.dataValues);
+
+  done(null, user.dataValues);
 };
 
 export default socialCallback;

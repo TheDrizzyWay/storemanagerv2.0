@@ -18,6 +18,6 @@ authRouter.get('/facebook', passport.authenticate('facebook', { scope: ['email']
 authRouter.get('/facebook/callback', passport.authenticate('facebook', { session: false }), facebook);
 
 authRouter.get('/twitter', passport.authenticate('twitter'));
-authRouter.get('/twitter/callback', passport.authenticate('twitter', { session: false }), twitter);
+authRouter.get('/twitter/redirect', passport.authenticate('twitter', { session: false }), twitter);
 
 export default authRouter;
