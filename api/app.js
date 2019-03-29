@@ -19,15 +19,6 @@ app.use(session({ secret: 'mysecret', resave: false, saveUninitialized: true }))
 passport.use(facebookStrategy);
 passport.use(twitterStrategy);
 app.use(passport.initialize());
-app.use(passport.session());
-
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
 
 app.use('/api/v1', router);
 
