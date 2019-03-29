@@ -86,5 +86,13 @@ export default {
       return res.status(500).send({ success: false, message: error.message });
     }
   },
+
+  facebook: async (req, res) => {
+    console.log(req.user);
+  },
+
+  twitter: async (req, res) => {
+    console.log(req.user);
+  },
   // update user
 };
