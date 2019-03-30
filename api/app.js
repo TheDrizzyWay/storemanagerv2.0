@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../UI')));
-app.use(session({ secret: 'mysecret', resave: false, saveUninitialized: true }));
+app.use(session({ secret: 'mysecret', resave: true, saveUninitialized: true }));
 
 passport.use(facebookStrategy);
 passport.use(twitterStrategy);
