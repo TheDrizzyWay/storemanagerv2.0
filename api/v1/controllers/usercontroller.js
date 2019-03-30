@@ -139,7 +139,7 @@ export default {
     }
   },
 
-  twitter: async (req, res) => {
+  nextsocial: async (req, res) => {
     console.log(req.user);
   },
   // update user

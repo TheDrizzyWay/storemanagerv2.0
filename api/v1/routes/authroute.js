@@ -5,7 +5,7 @@ import { requireAuth, adminAuth } from '../middleware/authmiddleware';
 import authValidation from '../validations/authvalidation';
 
 const {
-  logIn, signUp, facebook, twitter,
+  logIn, signUp, nextsocial,
 } = userController;
 const { logInValid, signUpValid } = authValidation;
 
@@ -18,10 +18,10 @@ authRouter.get('/facebook', passport.authenticate('facebook', { scope: ['email']
 authRouter.get(
   '/facebook/callback',
   passport.authenticate('facebook', { session: false }),
-  twitter,
+  nextsocial,
 );
 
 authRouter.get('/twitter', passport.authenticate('twitter'));
-authRouter.get('/twitter/redirect', passport.authenticate('twitter', { session: false }), twitter);
+authRouter.get('/twitter/redirect', passport.authenticate('twitter', { session: false }));
 
 export default authRouter;
