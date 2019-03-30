@@ -1,5 +1,8 @@
+import db from '../models';
 import hashes from '../middleware/hashes';
 import UserHelper from '../helpers/usershelper';
+
+const { User } = db;
 
 export default {
   signUp: async (req, res) => {
@@ -87,13 +90,57 @@ export default {
     }
   },
 
-  facebook: async (req, res) => {
-    console.log('working');
-    console.log(req.user);
+  strategyCallback: async (accessToken, refreshToken, profile, done) => {
+    try {
+      /* const providerList = {
+        google: {
+          id: '25745c60-7b1a-11e8-9c9c-2d42b21b1a3e',
+          type: 'google'
+        },
+        facebook: {
+          id: '35745c60-7b1a-11e8-9c9c-2d42b21b1a3e',
+          type: 'facebook'
+        },
+        twitter: {
+          id: '45745c60-7b1a-11e8-9c9c-2d42b21b1a3e',
+          type: 'twitter'
+        },
+        linkedin: {
+          id: '55745c60-7b1a-11e8-9c9c-2d42b21b1a3e',
+          type: 'linkedin'
+        }
+      }; */
+
+      const {
+        id, displayName, emails, provider,
+      } = profile;
+
+      if (!emails) {
+        const userWithNoEmail = { hasNoEmail: true };
+        return done(null, userWithNoEmail);
+      }
+
+      const emailValue = emails[0].value.toLowerCase();
+
+      const [user] = await User.findOrCreate({
+        where: { email: emailValue },
+        defaults: {
+          firstName: displayName.toLowerCase(),
+          lastName: `user${id}`,
+          password: 'password',
+          email: emailValue,
+          role: 'attendant',
+        },
+      });
+
+      return done(null, user.dataValues);
+    } catch (error) {
+      return done(error, null);
+    }
   },
 
   twitter: async (req, res) => {
-    console.log('working');
+    console.log(req.user);
   },
   // update user
 };
