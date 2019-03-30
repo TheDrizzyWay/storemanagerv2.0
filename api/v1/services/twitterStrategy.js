@@ -1,7 +1,7 @@
 import { Strategy as TwitterStrategy } from 'passport-twitter';
 import dotenv from 'dotenv';
 
-import socialCallback from './socialCallback';
+import userController from '../controllers/usercontroller';
 
 dotenv.config();
 
@@ -12,5 +12,5 @@ const twitterSetup = {
   includeEmail: true,
 };
 
-const twitterStrategy = new TwitterStrategy(twitterSetup, socialCallback);
+const twitterStrategy = new TwitterStrategy(twitterSetup, userController.strategyCallback);
 export default twitterStrategy;
