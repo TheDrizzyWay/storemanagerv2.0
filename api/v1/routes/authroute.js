@@ -22,6 +22,6 @@ authRouter.get(
 );
 
 authRouter.get('/twitter', passport.authenticate('twitter'));
-authRouter.get('/twitter/redirect', passport.authenticate('twitter', { session: false }));
+authRouter.get('/twitter/redirect', passport.authenticate('twitter', { session: false }), nextsocial);
 
 export default authRouter;

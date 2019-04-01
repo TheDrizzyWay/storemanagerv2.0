@@ -92,25 +92,6 @@ export default {
 
   strategyCallback: async (accessToken, refreshToken, profile, done) => {
     try {
-      /* const providerList = {
-        google: {
-          id: '25745c60-7b1a-11e8-9c9c-2d42b21b1a3e',
-          type: 'google'
-        },
-        facebook: {
-          id: '35745c60-7b1a-11e8-9c9c-2d42b21b1a3e',
-          type: 'facebook'
-        },
-        twitter: {
-          id: '45745c60-7b1a-11e8-9c9c-2d42b21b1a3e',
-          type: 'twitter'
-        },
-        linkedin: {
-          id: '55745c60-7b1a-11e8-9c9c-2d42b21b1a3e',
-          type: 'linkedin'
-        }
-      }; */
-
       const {
         id, displayName, emails, provider,
       } = profile;
