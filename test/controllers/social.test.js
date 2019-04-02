@@ -1,10 +1,10 @@
 import chai from 'chai';
 import nock from 'nock';
-import socialCallback from '../../api/v1/services/socialCallback';
+import UserController from '../../api/v1/controllers/usercontroller';
 import app from '../../api/app';
 
 const { expect } = chai;
-
+const { strategyCallback } = UserController;
 const accessToken = 'sometoken';
 const refreshToken = 'sometoken';
 const profile = {
@@ -24,18 +24,10 @@ nock('https://www.facebook.com/')
   .get('/api/v1/auth/facebook')
   .reply(200, 'facebook route called');
 
-nock('https://www.twitter.com/')
-  .filteringPath(() => '/api/v1/auth/twitter')
-  .get('/api/v1/auth/twitter')
-  .reply(200, 'twitter callback route called', {
-    Location: '/',
-  });
-
-
 describe('facebook strategy', () => {
   it('should be a function', (done) => {
-    socialCallback(accessToken, refreshToken, profile, done);
-    expect(socialCallback).to.be.a('function');
+    strategyCallback(accessToken, refreshToken, profile, done);
+    expect(strategyCallback).to.be.a('function');
   });
 
   it('should call the facebook route', async () => {
